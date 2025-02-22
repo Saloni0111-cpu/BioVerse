@@ -5,82 +5,46 @@ const Text = () => {
   return (
     <StyledWrapper>
       <div className="wrapper">
-        <span className="letter letter1">L</span>
-        <span className="letter letter2">o</span>
-        <span className="letter letter3">a</span>
-        <span className="letter letter4">d</span>
-        <span className="letter letter5">i</span>
-        <span className="letter letter6">n</span>
-        <span className="letter letter7">g</span>
-        <span className="letter letter8">.</span>
-        <span className="letter letter9">.</span>
-        <span className="letter letter10">.</span>
+        {"WELCOME TO BIOVERSE".split("").map((char, index) => (
+          <span 
+            key={index} 
+            className="letter" 
+            style={{ animationDelay: `${index * 0.1}s` }}
+          >
+            {char === " " ? "\u00A0" : char}
+          </span>
+        ))}
       </div>
     </StyledWrapper>
   );
 }
 
 const StyledWrapper = styled.div`
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  
   .wrapper {
-    min-height: 3rem;
-    min-width: 14rem;
-    font-size: 2rem;
-    position: relative;
-    overflow: hidden;
-    mask-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0),
-      rgba(0, 0, 0, 1) 30%,
-      rgba(0, 0, 0, 1) 70%,
-      rgba(0, 0, 0, 0)
-    );
+    display: inline-flex;
+    font-size: 5rem;
     font-family: monospace;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .letter {
-    width: 1ch;
-    position: absolute;
-    top: 50%;
-    transform: translate(0px, -50%);
-    left: 100%;
-    animation: scroll 2.5s linear infinite;
+    display: inline-block;
+    animation: scroll 2s linear infinite;
   }
 
   @keyframes scroll {
+    from {
+      transform: translateX(100%);
+    }
     to {
-      left: -1ch;
+      transform: translateX(-150%);
     }
   }
-
-  .letter1 {
-    animation-delay: calc(2.5s / 10 * (10 - 1) * -1);
-  }
-  .letter2 {
-    animation-delay: calc(2.5s / 10 * (10 - 2) * -1);
-  }
-  .letter3 {
-    animation-delay: calc(2.5s / 10 * (10 - 3) * -1);
-  }
-  .letter4 {
-    animation-delay: calc(2.5s / 10 * (10 - 4) * -1);
-  }
-  .letter5 {
-    animation-delay: calc(2.5s / 10 * (10 - 5) * -1);
-  }
-  .letter6 {
-    animation-delay: calc(2.5s / 10 * (10 - 6) * -1);
-  }
-  .letter7 {
-    animation-delay: calc(2.5s / 10 * (10 - 7) * -1);
-  }
-  .letter8 {
-    animation-delay: calc(2.5s / 10 * (10 - 8) * -1);
-  }
-  .letter9 {
-    animation-delay: calc(2.5s / 10 * (10 - 9) * -1);
-  }
-  .letter10 {
-    animation-delay: calc(2.5s / 10 * (10 - 10) * -1);
-  }`;
+`;
 
 export default Text;

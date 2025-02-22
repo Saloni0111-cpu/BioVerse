@@ -1,7 +1,7 @@
 import  { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const habitatNames = ["Forest", "Ocean", "Desert"]; // Add more habitats
+const habitatNames = ["Forest", "Ocean", "Desert", "River", "Insect", "Urban"]; // Add more habitats
 
 const Cards = () => {
   const [habitatImages, setHabitatImages] = useState([]);
@@ -39,7 +39,7 @@ const Cards = () => {
 
 const StyledWrapper = styled.div`
   .card {
-    width: 470px;
+    width: 1360px;
     height: 254px;
     border-radius: 4px;
     background: #0F1014;
@@ -47,7 +47,7 @@ const StyledWrapper = styled.div`
     gap: 5px;
     padding: .4em;
     position: relative;
-    left: 10rem;
+    left: 8.7rem;
     top: 25rem;
   }
 
