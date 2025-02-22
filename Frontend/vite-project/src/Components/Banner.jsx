@@ -44,11 +44,11 @@ const Banner = () => {
   return (
     <VideoContainer>
       <VideoWrapper currentIndex={currentIndex}>
-        {videos.map((video, index) => (
+        {videos.map((video) => (
           <video
             key={video.id}
             className="video"
-            src={video.video_files[3]?.link}
+            src={video.video_files[0]?.link}
             autoPlay
             muted
             loop
