@@ -98,21 +98,26 @@ export default Navbar;
 
 const StyledWrapper = Styled.div`
   .Nav-Container {
+  
     display: flex;
     position: fixed;
     height: 100%;
-    width: 70px;
+    width: 80px;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
     padding: 2rem;
     color: #fff;
     background: #0F1014;
+     mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 120%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
+  }
   }
 
   .button-container {
     position: fixed;
     top: 15rem;
+    left:1.5rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
