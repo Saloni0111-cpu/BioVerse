@@ -1,104 +1,109 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 const API_URL = "https://api.unsplash.com/search/photos";
-const API_KEY = "L70C7mwJpSXEu6KYs-PyEJVx50rsNaXVu9dOyZuY7M0"; // 🔹 Replace with your actual API key
+const API_KEY = "L70C7mwJpSXEu6KYs-PyEJVx50rsNaXVu9dOyZuY7M0"; // 🔹 Replace with your actual Unsplash API key
 
-const SearchCards = () => {
-  const [images, setImages] = useState({
-    species: "",
-    habitat: "",
-    conservation: "",
-  });
+const SearchCards = ({ categories = ["species", "habitat", "Geographic Location", "Conservation Status"] }) => {
+  const [images, setImages] = useState({});
 
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const speciesRes = await axios.get(`${API_URL}?query=wildlife&per_page=1`, {
-          headers: { Authorization: `Client-ID ${API_KEY}` },
-        });
+        const categoryImages = {};
+        for (const category of categories) {
+          const res = await axios.get(`${API_URL}?query=${category}&per_page=6`, {
+            headers: { Authorization: `Client-ID ${API_KEY}` },
+          });
 
-        const habitatRes = await axios.get(`${API_URL}?query=forest&per_page=1`, {
-          headers: { Authorization: `Client-ID ${API_KEY}` },
-        });
-
-        const conservationRes = await axios.get(`${API_URL}?query=nature&per_page=1`, {
-          headers: { Authorization: `Client-ID ${API_KEY}` },
-        });
-
-        setImages({
-          species: speciesRes.data.results[0]?.urls.regular || "",
-          habitat: habitatRes.data.results[0]?.urls.regular || "",
-          conservation: conservationRes.data.results[0]?.urls.regular || "",
-        });
+          categoryImages[category] = res.data.results.map((img) => img.urls.regular);
+        }
+        setImages(categoryImages);
       } catch (error) {
         console.error("Error fetching images:", error);
       }
     };
 
     fetchImages();
-  }, []);
+  }, [categories]);
 
   return (
     <StyledWrapper>
-      <div className="cards">
-        <h3>Species</h3>
-        <figure className="card">
-          {images.species ? <img src={images.species} alt="Species" className="card_image" /> : <p>Loading...</p>}
-        </figure>
-      </div>
-      <div className="cards">
-        <h3>Habitat</h3>
-        <figure className="card">
-          {images.habitat ? <img src={images.habitat} alt="Habitat" className="card_image" /> : <p>Loading...</p>}
-        </figure>
-      </div>
-      <div className="cards">
-        <h3>Conservation Status</h3>
-        <figure className="card">
-          {images.conservation ? <img src={images.conservation} alt="Conservation" className="card_image" /> : <p>Loading...</p>}
-        </figure>
-      </div>
+      {categories.map((category) => (
+        <div key={category}>
+          <h3>{category.charAt(0).toUpperCase() + category.slice(1)}</h3>
+          <div className="cards">
+            {images[category]?.length > 0 ? (
+              images[category].map((img, index) => (
+                <figure key={index} className="card">
+                  <img src={img} alt={category} className="card_image" />
+                </figure>
+              ))
+            ) : (
+              <p>Loading...</p>
+            )}
+          </div>
+        </div>
+      ))}
     </StyledWrapper>
   );
 };
 
+SearchCards.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.string),
+};
+
 const StyledWrapper = styled.div`
   position: relative;
-  top: 15rem;
-  left: 7rem;
+  top: 10rem;
+  left: 10rem;
+
+  h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
 
   .cards {
-    perspective: 500px;
-    margin-bottom: 20px;
+    width: 66rem;
+    max-width: 100%;
+    gap: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   .card {
-    width: 200px;
-    height: 250px;
+  cursor:pointer;
+    width: 320px;
+    height: 200px;
     background: #16161d;
     border: 2px solid #555555;
-    border-radius: 4px;
-    position: relative;
-    transform-style: preserve-3d;
-    will-change: transform;
-    transition: transform 0.5s;
+    border-radius: 8px;
     overflow: hidden;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
+    transition: transform 0.5s ease;
+    
   }
 
   .card:hover {
-    transform: translateZ(10px) rotateX(20deg) rotateY(20deg);
+    transform: scale(1.05);
   }
 
   .card_image {
     width: 100%;
     height: 100%;
+    display: block;
     object-fit: cover;
-    border-radius: 4px;
+  }
+
+  @media (max-width: 768px) {
+    .cards {
+      flex-direction: column;
+    }
   }
 `;
 
