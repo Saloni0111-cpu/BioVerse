@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 const API_URL = "https://api.unsplash.com/search/photos";
 const API_KEY = "L70C7mwJpSXEu6KYs-PyEJVx50rsNaXVu9dOyZuY7M0"; // 🔹 Replace with your actual Unsplash API key
 
-const SearchCards = ({ categories = ["species", "habitat", "Geographic Location", "Conservation Status"] }) => {
+const SearchCards = ({ categories = ["Animal species", "habitat", "Conservation Status"] }) => {
   const [images, setImages] = useState({});
 
   useEffect(() => {
@@ -57,40 +57,49 @@ SearchCards.propTypes = {
 
 const StyledWrapper = styled.div`
   position: relative;
-  top: 10rem;
-  left: 10rem;
+  height:100vh;
+  margin: 5rem auto; /* Centered */
+  max-width: 60vw; /* Prevents overflow */
+  left:1rem;
+  top:10rem;
+  z-index:;
+  
 
   h3 {
     color: #fff;
     font-size: 1.5rem;
     margin-bottom: 1rem;
+    text-align: center;
   }
 
   .cards {
-    width: 66rem;
-    max-width: 100%;
-    gap: 0;
+    width: 100%;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3rem;
+    margin: 0 auto; /* Keeps cards centered */
   }
 
   .card {
-  cursor:pointer;
-    width: 320px;
-    height: 200px;
-    background: #16161d;
+    cursor: pointer;
+    width: 300px;
+    height: 120px;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
     border: 2px solid #555555;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
     display: flex;
     flex-direction: row;
-    transition: transform 0.5s ease;
-    
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    margin: 0.3rem;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
   }
 
   .card:hover {
-    transform: scale(1.05);
+  cursor:pointer;
+    transform: scale(1.02) rotate(2deg);
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.4);
   }
 
   .card_image {
@@ -98,13 +107,16 @@ const StyledWrapper = styled.div`
     height: 100%;
     display: block;
     object-fit: cover;
+    border-radius: 12px;
   }
 
   @media (max-width: 768px) {
     .cards {
       flex-direction: column;
+      align-items: center;
     }
   }
 `;
+
 
 export default SearchCards;
