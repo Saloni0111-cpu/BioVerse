@@ -1,13 +1,30 @@
-import 'react';
-import styled from 'styled-components';
+import  { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import navigation hook
+import styled from "styled-components";
 
 const SearchInput = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate(); // Hook for navigation
+
+  const handleSearch = () => {
+    if (searchTerm.trim() !== "") {
+      navigate(`/search-results?query=${encodeURIComponent(searchTerm)}`);
+    }
+  };
+
   return (
     <StyledWrapper>
       <div className="search-container">
         <div className="search-bar">
-          <input type="text" className="search-input" placeholder="Search..." />
-          <div className="search-icon">
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyPress={(e) => e.key === "Enter" && handleSearch()}
+          />
+          <div className="search-icon" onClick={handleSearch} style={{ cursor: "pointer" }}>
             <svg xmlns="http://www.w3.org/2000/svg" height={24} viewBox="0 0 24 24" width={24}>
               <path d="M0 0h24v24H0z" fill="none" />
               <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM9.5 14C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
@@ -18,16 +35,16 @@ const SearchInput = () => {
       </div>
     </StyledWrapper>
   );
-}
+};
 
 const StyledWrapper = styled.div`
   position: relative;
   top: 3rem;
-  left:30rem;
+  left: 30rem;
+
   .search-container {
     position: relative;
     width: 600px;
-
   }
 
   .search-bar {
@@ -49,7 +66,6 @@ const StyledWrapper = styled.div`
     font-size: 16px;
     padding: 10px;
     outline: none;
-    
   }
 
   .search-input::placeholder {
@@ -65,7 +81,7 @@ const StyledWrapper = styled.div`
     border-radius: 50%;
     margin-left: 10px;
     cursor: pointer;
-    margin-right:0.2rem;
+    margin-right: 0.2rem;
     transition: background-color 0.3s ease;
   }
 
@@ -105,6 +121,7 @@ const StyledWrapper = styled.div`
   .search-bar:focus-within + .glow {
     transform: translate(-50%, -50%) scale(1.2);
     background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
-  }`;
+  }
+`;
 
 export default SearchInput;

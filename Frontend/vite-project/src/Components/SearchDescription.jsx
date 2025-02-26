@@ -1,56 +1,80 @@
-import React from "react";
+import "react";
 import styled from "styled-components";
 
 const SearchDescription = () => {
   return (
     <StyledCard>
-      <div>
-        <h1>Explore Biodiversity</h1>
+      <div className="head">
+      <div className="container">
+        <h1>Species</h1>
         <p>
-          Discover species, habitats, and conservation efforts with stunning visuals and in-depth insights.
+        A species is a group of organisms that share common characteristics and can interbreed to produce fertile offspring. It is the fundamental unit of biological classification and biodiversity. Members of a species typically have similar physical traits, behaviors, and genetic makeup, allowing them to thrive in specific environments. Species play a crucial role in ecosystems, interacting with other organisms and contributing to the balance of nature. The concept of species is central to taxonomy, evolution, and conservation efforts, as understanding species diversity helps in studying ecological relationships and protecting endangered organisms.
         </p>
+        <h3>Animal Species</h3>
+        <p>Scientists estimate that there are around 8.7 million species of organisms on Earth, with about 7.77 million being animal species. However, only about 1.5 million animal species have been scientifically described and classified so far. The majority of undiscovered species are believed to exist in deep oceans, dense forests, and remote ecosystems. New species are still being discovered every year, highlighting the vast biodiversity of the planet.</p>
       </div>
-      <StyledButton>
-        <p>Learn More</p>
-        <svg
-          className="arrow"
-          stroke="currentColor"
-          strokeWidth={1.5}
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" strokeLinejoin="round" strokeLinecap="round" />
-        </svg>
-      </StyledButton>
+      
+      {/* 2 */}
+      <div className="container">
+        <h1>Species</h1>
+        <p>
+        A species is a group of organisms that share common characteristics and can interbreed to produce fertile offspring. It is the fundamental unit of biological classification and biodiversity. Members of a species typically have similar physical traits, behaviors, and genetic makeup, allowing them to thrive in specific environments. Species play a crucial role in ecosystems, interacting with other organisms and contributing to the balance of nature. The concept of species is central to taxonomy, evolution, and conservation efforts, as understanding species diversity helps in studying ecological relationships and protecting endangered organisms.
+        </p>
+        <h3>Animal Species</h3>
+        <p>Scientists estimate that there are around 8.7 million species of organisms on Earth, with about 7.77 million being animal species. However, only about 1.5 million animal species have been scientifically described and classified so far. The majority of undiscovered species are believed to exist in deep oceans, dense forests, and remote ecosystems. New species are still being discovered every year, highlighting the vast biodiversity of the planet.</p>
+      </div>
+      
+      
+      {/* 3 */}
+      <div className="container">
+        <h1>Species</h1>
+        <p>
+        A species is a group of organisms that share common characteristics and can interbreed to produce fertile offspring. It is the fundamental unit of biological classification and biodiversity. Members of a species typically have similar physical traits, behaviors, and genetic makeup, allowing them to thrive in specific environments. Species play a crucial role in ecosystems, interacting with other organisms and contributing to the balance of nature. The concept of species is central to taxonomy, evolution, and conservation efforts, as understanding species diversity helps in studying ecological relationships and protecting endangered organisms.
+        </p>
+        <h3>Animal Species</h3>
+        <p>Scientists estimate that there are around 8.7 million species of organisms on Earth, with about 7.77 million being animal species. However, only about 1.5 million animal species have been scientifically described and classified so far. The majority of undiscovered species are believed to exist in deep oceans, dense forests, and remote ecosystems. New species are still being discovered every year, highlighting the vast biodiversity of the planet.</p>
+      </div>
+      </div>
     </StyledCard>
   );
 };
 
 export default SearchDescription;
 
-// Styled Components
+
 const StyledCard = styled.div`
 position:relative;
+.head{
+position:relative;
+display:flex;
+flex-direction:column;
+gap:5rem;
+}
+.container{
+display: flex;
+flex-direction: column;
+
+position:relative;
 top:-38rem;
-left:60rem;
-  width: 22em;
-  height: 16em;
-  border: 2px solid rgba(111, 106, 119, 0.5);
+left:51rem;
+  width: 40em;
+  height: 23em;
+  border: 2px solid rgba(72, 72, 72, 0.5);
   border-radius: 1.5em;
-  background: linear-gradient(135deg, rgba(102, 93, 114, 0.7), rgba(34, 27, 44, 0.2));
+  background: linear-gradient(135deg, rgba(48, 48, 48, 0.7), rgba(42, 42, 42, 0.2));
   color: white;
   font-family: "Nunito", sans-serif;
-  padding: 1.5em;
+  padding: 1em;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   backdrop-filter: blur(12px);
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;}
+  margin-bottom:3rem;
 
-  &:hover {
-    transform: scale(1.05);
+  .container:hover {
+   
     box-shadow: 0px 6px 15px rgba(255, 255, 255, 0.3);
   }
 
@@ -61,39 +85,10 @@ left:60rem;
   }
 
   p {
-    font-size: 0.9em;
+    font-size: 0.8em;
     color: #ddd;
     margin-top: 0.5em;
   }
 `;
 
-const StyledButton = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  padding: 0.5em 1.2em;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 2em;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  font-size: 0.9em;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(8px);
 
-  &:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(2px);
-  }
-
-  .arrow {
-    width: 1.2em;
-    height: 1.2em;
-    transition: transform 0.3s ease;
-  }
-
-  &:hover .arrow {
-    transform: translateX(5px);
-  }
-`;

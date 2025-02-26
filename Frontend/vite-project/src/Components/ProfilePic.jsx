@@ -5,12 +5,6 @@ const ProfilePic = () => {
   return (
     <StyledWrapper>
       <div>
-        <div className='backgroundVideo'  style={{height:'1rem', width: "80%", margin: "auto" }}>
-        <video autoPlay loop muted style={{width: "100%"}}>
-          <source src='/V1.mp4' type='video/webm' />
-          </video>
-        </div>
-
         <img src='/public/Profile.webp' alt='Profile' />
       </div>
       <div className='profile-info'>

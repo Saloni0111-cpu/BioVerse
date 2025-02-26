@@ -98,7 +98,7 @@ export default Navbar;
 
 const StyledWrapper = Styled.div`
   .Nav-Container {
-  
+    z-index:1;
     display: flex;
     position: fixed;
     height: 100%;
