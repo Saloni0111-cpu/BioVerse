@@ -28,7 +28,7 @@ const ShopCard = () => {
 
   return (
     <StyledWrapper>
-        <div className="display-container"> <h2 className="S-Head">Read the Best You Want<br/>Buy the best you can afford</h2></div>
+        <div className="display-container"> <h2 className="S-Head">Read the Best You Want<br/>Check out all the amazing Encyclopedias to read</h2></div>
         <div className="container">
       {books.map((book) => (
         
