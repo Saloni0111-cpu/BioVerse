@@ -37,6 +37,7 @@ const CategoryCard = () => {
   return (
     <>
     <StyledWrapper>
+    <h2>Categories</h2>
         <div className="wrapper">
           {"Look for Each Categories".split("").map((char, index) => (
             <span 
@@ -140,7 +141,16 @@ const StyledWrapper = styled.div`
     overflow: hidden;
     display: flex;
   }
-
+  h2 {
+  position:relative;
+  top:18rem;
+  left:13rem;
+  overflow:hidden;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: rgb(99, 138, 55);
+  }
   .letter {
     display: inline-block;
     animation: scroll 4s linear infinite;

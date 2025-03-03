@@ -12,7 +12,7 @@ const Research = () => {
     const fetchPapers = async () => {
       try {
         const response = await axios.get(
-          "http://export.arxiv.org/api/query?search_query=all:biodiversity&start=0&max_results=10"
+          "http://export.arxiv.org/api/query?search_query=all:biodiversity&start=0&max_results=12"
         );
 
         const parser = new DOMParser();
@@ -87,17 +87,22 @@ const Research = () => {
 
 const StyleWrapper = styled.div`
   position: relative;
+  left:8rem;
   top:18rem;
   overflow:hidden;
-  background: rgb(32, 34, 43);
+  background: transparent;
+  border-color:rgb(242, 243, 247);
   padding: 2px;
   text-align: center;
+  width:66rem;
 
   h2 {
-    font-size: 24px;
+  position:relative;
+  left:-22rem;
+    font-size: 40px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: white;
+    color: rgb(99, 138, 55);
   }
 
   .grid-container {
@@ -118,7 +123,7 @@ const StyleWrapper = styled.div`
 
     h3 {
       font-size: 18px;
-      color: #0077cc;
+      color: rgb(99, 138, 55);
     }
 
     .date {
@@ -138,7 +143,7 @@ const StyleWrapper = styled.div`
       display: inline-block;
       margin-top: 10px;
       padding: 8px 12px;
-      background: #0077cc;
+      background: rgb(71, 97, 41);
       color: white;
       text-decoration: none;
       border-radius: 5px;
@@ -146,7 +151,7 @@ const StyleWrapper = styled.div`
     }
 
     a:hover {
-      background: #005fa3;
+      background: rgb(71, 90, 49);
     }
 
     &:hover {
