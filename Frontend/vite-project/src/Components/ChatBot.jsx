@@ -1,5 +1,4 @@
-
-import  { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -26,6 +25,8 @@ const StyleWrapper = styled.div`
         overflow-y: auto;
         background: white;
         border-radius: 5px;
+        display: flex;
+        flex-direction: column;
     }
 
     .message {
@@ -46,6 +47,7 @@ const StyleWrapper = styled.div`
         background: #ddd;
         color: black;
         text-align: left;
+        align-self: flex-start;
     }
 
     .input-container {
@@ -83,27 +85,44 @@ const ChatBot = () => {
         if (!input.trim()) return;
 
         const userMessage = { role: "user", content: input };
-        setMessages([...messages, userMessage]);
+        setMessages((prevMessages) => [...prevMessages, userMessage]);
+
+        const apiKey = "AIzaSyCkvr4FIH9r9M5S_9VEEdJmAHvCxfaDF8Q"; // ✅ Use environment variable
+
+        if (!apiKey) {
+            console.error("API Key is missing!");
+            setMessages((prevMessages) => [
+                ...prevMessages,
+                { role: "assistant", content: "Error: Missing API key. Please check your configuration." }
+            ]);
+            return;
+        }
 
         try {
             const response = await axios.post(
-                "https://api.openai.com/v1/chat/completions",
+                `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateText?key=${apiKey}`,
                 {
-                    model: "gpt-3.5-turbo",
-                    messages: [...messages, userMessage],
+                    prompt: { text: input }, // ✅ Gemini API requires this format
                 },
                 {
                     headers: {
-                        "Authorization": `Bearer process.env.OPENAPI_KEY`,
-                        "Content-Type": "application/json"
-                    }
+                        "Content-Type": "application/json",
+                    },
                 }
             );
 
-            const botMessage = { role: "assistant", content: response.data.choices[0].message.content };
-            setMessages([...messages, userMessage, botMessage]);
+            const botMessage = {
+                role: "assistant",
+                content: response.data.candidates[0]?.output || "No response received.",
+            };
+
+            setMessages((prevMessages) => [...prevMessages, botMessage]);
         } catch (error) {
             console.error("Error fetching response:", error);
+            setMessages((prevMessages) => [
+                ...prevMessages,
+                { role: "assistant", content: "Sorry, I couldn't respond. Please try again." },
+            ]);
         }
 
         setInput("");
@@ -115,7 +134,8 @@ const ChatBot = () => {
             <div className="chat-container">
                 {messages.map((msg, index) => (
                     <p key={index} className={`message ${msg.role}`}>
-                        <strong>{msg.role === "user" ? "You: " : "Bot: "}</strong>{msg.content}
+                        <strong>{msg.role === "user" ? "You: " : "Bot: "}</strong>
+                        {msg.content}
                     </p>
                 ))}
             </div>
