@@ -3,6 +3,7 @@ import Styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 
+
 const Navbar = () => {
 
   const navigate = useNavigate();
@@ -24,6 +25,9 @@ const Navbar = () => {
   }
   const Map = () => {
     navigate('/map');
+  }
+  const DashBoard = () => {
+    navigate('/dashboard');
   }
 
 
@@ -86,6 +90,16 @@ const Navbar = () => {
               <path d="M9.5 3.7l5 1.6 5.5-1.8V20l-5.5 1.8-5-1.6-5.5 1.8V4.5l5.5-1.8zM10 5L5 6.7v13.6l5-1.6V5zm9 0l-4 1.3v13.6l4-1.3V5zM11 6.4v12.2l4 1.3V7.7l-4-1.3z"/>
             </svg>
             <span className="icon-text">Map</span>
+          </button>
+
+          {/* DashBoard */}
+          <button className="button" onClick={DashBoard}>
+          <svg className="icon" stroke="currentColor" fill="currentColor" strokeWidth={0} viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+  <path d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm8-3h8v9h-8v-9z"/>
+</svg>
+
+
+            <span className="icon-text">DashBoard</span>
           </button>
 
         </div>

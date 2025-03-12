@@ -1,30 +1,32 @@
-import 'react'
+import { useState } from 'react';
 import styled from 'styled-components';
+import LoginForm from './LoginForm';
+import RegistrationForm from './RegistrationForm';
 
 const ProfilePic = () => {
+  const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+
   return (
     <StyledWrapper>
-      <div>
-        <img src='/public/Profile.webp' alt='Profile' />
-      </div>
+      <img src='/public/Profile.webp' alt='Profile' />
       <div className='profile-info'>
         <h2>Bioverse</h2>
         <p>Login to explore in detail</p>
       </div>
       <div className='buttons'>
-      <button className="button">
-        Login
-      </button>
+        <button className="button" onClick={() => setShowLogin(true)}>Login</button>
+        <button className="button" onClick={() => setShowRegister(true)}>Registration</button>
+      </div>
 
-      <button className="button">
-        Registration
-      </button>
-        </div>
+      {showLogin && <LoginForm isVisible={showLogin} onClose={() => setShowLogin(false)} />}
+      {showRegister && <RegistrationForm isVisible={showRegister}  onClose={() => setShowRegister(false)} />}
     </StyledWrapper>
-  )
-}
+  );
+};
 
-export default ProfilePic
+export default ProfilePic;
+
 
 const StyledWrapper = styled.div`
     position:relative;

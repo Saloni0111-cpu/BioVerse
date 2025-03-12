@@ -19,9 +19,11 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "joi": "^17.13.3",
+    "json-web-token": "^3.2.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.10.1",
     "node": "^23.8.0",
+    "openai": "^4.86.2",
     "react-stripe-checkout": "^2.6.3",
     "stripe": "^17.7.0",
     "validator": "^13.12.0"
